@@ -68,7 +68,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Times New Roman", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 162);
-            label1.Location = new Point(276, 0);
+            label1.Location = new Point(254, 11);
             label1.Name = "label1";
             label1.Size = new Size(434, 34);
             label1.TabIndex = 1;
@@ -78,21 +78,20 @@
             // 
             txtAd.BorderStyle = BorderStyle.FixedSingle;
             txtAd.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            txtAd.Location = new Point(428, 171);
+            txtAd.Location = new Point(299, 194);
             txtAd.Multiline = true;
             txtAd.Name = "txtAd";
-            txtAd.Size = new Size(205, 38);
+            txtAd.Size = new Size(322, 35);
             txtAd.TabIndex = 5;
-            txtAd.Text = "isim giriniz";
             // 
             // txtSoyad
             // 
             txtSoyad.BorderStyle = BorderStyle.FixedSingle;
             txtSoyad.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            txtSoyad.Location = new Point(428, 215);
+            txtSoyad.Location = new Point(301, 235);
             txtSoyad.Multiline = true;
             txtSoyad.Name = "txtSoyad";
-            txtSoyad.Size = new Size(205, 38);
+            txtSoyad.Size = new Size(320, 35);
             txtSoyad.TabIndex = 6;
             toolTip3.SetToolTip(txtSoyad, "soyisim giriniz");
             // 
@@ -100,10 +99,10 @@
             // 
             txtMail.BorderStyle = BorderStyle.FixedSingle;
             txtMail.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            txtMail.Location = new Point(428, 259);
+            txtMail.Location = new Point(299, 283);
             txtMail.Multiline = true;
             txtMail.Name = "txtMail";
-            txtMail.Size = new Size(205, 38);
+            txtMail.Size = new Size(322, 36);
             txtMail.TabIndex = 7;
             toolTip4.SetToolTip(txtMail, "g-mail giriniz");
             // 
@@ -111,19 +110,19 @@
             // 
             txtSifre.BorderStyle = BorderStyle.FixedSingle;
             txtSifre.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            txtSifre.Location = new Point(287, 303);
+            txtSifre.Location = new Point(301, 235);
             txtSifre.Multiline = true;
             txtSifre.Name = "txtSifre";
             txtSifre.PasswordChar = '*';
-            txtSifre.Size = new Size(205, 38);
+            txtSifre.Size = new Size(320, 38);
             txtSifre.TabIndex = 8;
             toolTip5.SetToolTip(txtSifre, "şifre giriniz");
             // 
             // pictureBoxAvatar
             // 
-            pictureBoxAvatar.Location = new Point(457, 72);
+            pictureBoxAvatar.Location = new Point(389, 105);
             pictureBoxAvatar.Name = "pictureBoxAvatar";
-            pictureBoxAvatar.Size = new Size(142, 82);
+            pictureBoxAvatar.Size = new Size(127, 80);
             pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxAvatar.TabIndex = 11;
             pictureBoxAvatar.TabStop = false;
@@ -134,17 +133,17 @@
             // 
             txtSifreTekrar.BorderStyle = BorderStyle.FixedSingle;
             txtSifreTekrar.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            txtSifreTekrar.Location = new Point(590, 303);
+            txtSifreTekrar.Location = new Point(301, 283);
             txtSifreTekrar.Multiline = true;
             txtSifreTekrar.Name = "txtSifreTekrar";
             txtSifreTekrar.PasswordChar = '*';
-            txtSifreTekrar.Size = new Size(205, 38);
+            txtSifreTekrar.Size = new Size(320, 38);
             txtSifreTekrar.TabIndex = 14;
             toolTip6.SetToolTip(txtSifreTekrar, "tekrar şifre giriniz");
             // 
             // txtKod
             // 
-            txtKod.Location = new Point(447, 304);
+            txtKod.Location = new Point(368, 327);
             txtKod.Multiline = true;
             txtKod.Name = "txtKod";
             txtKod.Size = new Size(137, 37);
@@ -181,10 +180,10 @@
             // 
             btnKodGonder.BackColor = Color.Transparent;
             btnKodGonder.Image = Properties.Resources.sign_up;
-            btnKodGonder.Location = new Point(408, 324);
+            btnKodGonder.Location = new Point(366, 363);
             btnKodGonder.Name = "btnKodGonder";
-            btnKodGonder.Size = new Size(235, 109);
-            btnKodGonder.SizeMode = PictureBoxSizeMode.Zoom;
+            btnKodGonder.Size = new Size(133, 91);
+            btnKodGonder.SizeMode = PictureBoxSizeMode.StretchImage;
             btnKodGonder.TabIndex = 22;
             btnKodGonder.TabStop = false;
             toolTip9.SetToolTip(btnKodGonder, "üye ol");
@@ -194,9 +193,9 @@
             // 
             label2.BackColor = Color.WhiteSmoke;
             label2.Font = new Font("Times New Roman", 10F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline);
-            label2.Location = new Point(219, 311);
+            label2.Location = new Point(230, 235);
             label2.Name = "label2";
-            label2.Size = new Size(65, 26);
+            label2.Size = new Size(76, 38);
             label2.TabIndex = 23;
             label2.Text = "ŞİFRE";
             // 
@@ -204,7 +203,7 @@
             // 
             label3.BackColor = Color.WhiteSmoke;
             label3.Font = new Font("Times New Roman", 10F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline);
-            label3.Location = new Point(503, 302);
+            label3.Location = new Point(230, 283);
             label3.Name = "label3";
             label3.Size = new Size(85, 42);
             label3.TabIndex = 24;
@@ -214,9 +213,9 @@
             // 
             label9.BackColor = Color.WhiteSmoke;
             label9.Font = new Font("Times New Roman", 10F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline);
-            label9.Location = new Point(348, 223);
+            label9.Location = new Point(228, 235);
             label9.Name = "label9";
-            label9.Size = new Size(78, 24);
+            label9.Size = new Size(78, 35);
             label9.TabIndex = 25;
             label9.Text = "SOYİSİM";
             // 
@@ -224,9 +223,9 @@
             // 
             label4.BackColor = Color.WhiteSmoke;
             label4.Font = new Font("Times New Roman", 10F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline);
-            label4.Location = new Point(380, 182);
+            label4.Location = new Point(228, 194);
             label4.Name = "label4";
-            label4.Size = new Size(46, 21);
+            label4.Size = new Size(78, 35);
             label4.TabIndex = 26;
             label4.Text = "İSİM";
             // 
@@ -234,9 +233,9 @@
             // 
             label5.BackColor = Color.WhiteSmoke;
             label5.Font = new Font("Times New Roman", 10F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline);
-            label5.Location = new Point(348, 265);
+            label5.Location = new Point(228, 283);
             label5.Name = "label5";
-            label5.Size = new Size(78, 24);
+            label5.Size = new Size(78, 36);
             label5.TabIndex = 27;
             label5.Text = "G-MAİL";
             // 
@@ -244,7 +243,7 @@
             // 
             pictureBox3.BackColor = SystemColors.ButtonHighlight;
             pictureBox3.Image = Properties.Resources.gizle;
-            pictureBox3.Location = new Point(812, 303);
+            pictureBox3.Location = new Point(624, 238);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(48, 32);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
@@ -257,13 +256,13 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
-            BackgroundImage = Properties.Resources.yeniuye;
-            BackgroundImageLayout = ImageLayout.Zoom;
-            ClientSize = new Size(917, 424);
-            Controls.Add(pictureBox3);
-            Controls.Add(label5);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(894, 466);
             Controls.Add(label4);
             Controls.Add(label9);
+            Controls.Add(pictureBox3);
+            Controls.Add(label5);
             Controls.Add(txtSifre);
             Controls.Add(txtSifreTekrar);
             Controls.Add(label3);

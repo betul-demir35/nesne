@@ -25,27 +25,25 @@ namespace nesne
         private string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=nesne;Integrated Security=True;";
 
         private string mevcutAvatarYolu = "";
+  
 
         public üye()
         {
-
             PlaySound();
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             txtSifre.PasswordChar = '*';
-            this.hakkımızdaToolStripMenuItem.Click += new EventHandler(hakkımızdaToolStripMenuItem_Click);
-
             if (Properties.Settings.Default.BeniHatirla)
             {
                 txtMail.Text = Properties.Settings.Default.Mail;
                 txtSifre.Text = Properties.Settings.Default.Sifre;
-                chkBeniHatirla.Checked = Properties.Settings.Default.BeniHatirla;// Uygulamanın kalıcı ayarlarını (uygulama kapansa bile saklanan veriler) temsil eder.
+                chkBeniHatirla.Checked = Properties.Settings.Default.BeniHatirla;
 
                 if (!string.IsNullOrEmpty(Properties.Settings.Default.AvatarPath) &&
                     File.Exists(Properties.Settings.Default.AvatarPath))
                 {
-                    pictureBoxAvatar.Image = Image.FromFile(Properties.Settings.Default.AvatarPath);
-                    pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBoxAavacatar.Image = Image.FromFile(Properties.Settings.Default.AvatarPath);
+                    pictureBoxAavacatar.SizeMode = PictureBoxSizeMode.Zoom;
                 }
             }
             else
@@ -59,14 +57,19 @@ namespace nesne
 
         private void PlaySound()
         {
+
             try
             {
-                string soundPath = @"C:\Users\EXCALİBUR\Desktop\ödevler\nesne\nesne\game.wav";
-                player = new SoundPlayer(soundPath);
+                string soundPath = @"C:\Users\betul\OneDrive\Desktop\ödevler\nesne\nesne\bin\Debug\net8.0-windows\load.wav";
+
+                player = new SoundPlayer("load.wav");
                 player.Play();
                 isSoundOn = true;
             }
-            catch { }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata: " + ex.Message);
+            }
         }
 
 
@@ -106,35 +109,62 @@ namespace nesne
             uint volumeAllChannels = ((uint)newVolume & 0x0000ffff) | ((uint)newVolume << 16);
             waveOutSetVolume(IntPtr.Zero, volumeAllChannels);
         }
-
         private void btnGiris_Click(object sender, EventArgs e)
         {
             string mail = txtMail.Text.Trim();
             string sifre = txtSifre.Text.Trim();
-            string secilenAvatarYolu = "";
+            string secilenAvatarYolu = pictureBoxAavacatar.ImageLocation;
+            string isim = "";
+            string yetki = "kullanici";
+            bool engelliMi = false;
+
+            if (string.IsNullOrEmpty(mail) || string.IsNullOrEmpty(sifre))
+            {
+                MessageBox.Show("Lütfen mail ve şifre alanlarını doldurun.");
+                return;
+            }
 
             using (SqlConnection baglanti = new SqlConnection(connectionString))
             {
-                baglanti.Open();
-                string sorgu = "SELECT TOP 1 Sifre, Avatar FROM dbo.Kullanici WHERE Mail = @mail";
-                using (SqlCommand komut = new SqlCommand(sorgu, baglanti))
+                try
                 {
-                    komut.Parameters.AddWithValue("@mail", mail);
-                    SqlDataReader reader = komut.ExecuteReader();
-
-                    if (reader.Read())
+                    baglanti.Open();
+                    string sorgu = "SELECT TOP 1 Isim, Sifre, Avatar, Yetki, Engel FROM dbo.Kullanici WHERE Mail = @mail";
+                    using (SqlCommand komut = new SqlCommand(sorgu, baglanti))
                     {
-                        string dbSifre = reader["Sifre"].ToString();
-                        mevcutAvatarYolu = reader["Avatar"].ToString();
+                        komut.Parameters.AddWithValue("@mail", mail);
 
-                        reader.Close();
-
-                        if (dbSifre != sifre)
+                        using (SqlDataReader reader = komut.ExecuteReader())
                         {
-                            MessageBox.Show("Şifre hatalı!");
-                            return;
+                            if (reader.Read())
+                            {
+                                isim = reader["Isim"].ToString();
+                                string dbSifre = reader["Sifre"].ToString();
+                                mevcutAvatarYolu = reader["Avatar"].ToString();
+
+                                yetki = reader["Yetki"] != DBNull.Value ? reader["Yetki"].ToString() : "kullanici";
+                                engelliMi = reader["Engel"] != DBNull.Value && Convert.ToBoolean(reader["Engel"]);
+                                if (dbSifre != sifre)
+                                {
+                                    MessageBox.Show("Yetki: " + yetki + "\nEngel: " + engelliMi.ToString());
+
+                                    return;
+                                }
+
+                                if (engelliMi)
+                                {
+                                    MessageBox.Show("Bu kullanıcı engellenmiştir. Giriş yapamazsınız.");
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Kullanıcı bulunamadı!");
+                                return;
+                            }
                         }
-                        secilenAvatarYolu = pictureBoxAvatar.ImageLocation;
+
+                        // Avatar kontrolü
                         if (!string.IsNullOrEmpty(secilenAvatarYolu) && secilenAvatarYolu != mevcutAvatarYolu)
                         {
                             DialogResult dr = MessageBox.Show(
@@ -145,7 +175,6 @@ namespace nesne
 
                             if (dr == DialogResult.Yes)
                             {
-
                                 string updateQuery = "UPDATE dbo.Kullanici SET Avatar = @yeniAvatar WHERE Mail = @mail AND Sifre = @sifre";
                                 using (SqlCommand updateCmd = new SqlCommand(updateQuery, baglanti))
                                 {
@@ -161,16 +190,14 @@ namespace nesne
                                 MessageBox.Show("Kayıtlı avatarı seçiniz!");
                                 if (File.Exists(mevcutAvatarYolu))
                                 {
-                                    pictureBoxAvatar.Image = Image.FromFile(mevcutAvatarYolu);
-                                    pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+                                    pictureBoxAavacatar.Image = Image.FromFile(mevcutAvatarYolu);
+                                    pictureBoxAavacatar.SizeMode = PictureBoxSizeMode.Zoom;
                                 }
                                 return;
                             }
                         }
 
-                        MessageBox.Show("Giriş başarılı!");
-
-
+                        // Beni hatırla ayarları
                         if (chkBeniHatirla.Checked)
                         {
                             Properties.Settings.Default.Mail = mail;
@@ -190,14 +217,26 @@ namespace nesne
                             Properties.Settings.Default.Save();
                         }
 
+                        
+                        MessageBox.Show("Giriş başarılı!");
+
+                        ekran frm = new ekran(isim, mevcutAvatarYolu, yetki);
+                        frm.Show();
+                        this.Hide();
+
+
+
                     }
-                    else
-                    {
-                        MessageBox.Show("Kullanıcı bulunamadı!");
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hata: " + ex.Message);
                 }
             }
         }
+
+
+
 
         private void btnAvatarSec_Click(object sender, EventArgs e)
         {
@@ -205,8 +244,8 @@ namespace nesne
             ofd.Filter = "Resim Dosyaları|*.jpg;*.jpeg;*.png";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                pictureBoxAvatar.ImageLocation = ofd.FileName;
-                pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBoxAavacatar.ImageLocation = ofd.FileName;
+                pictureBoxAavacatar.SizeMode = PictureBoxSizeMode.Zoom;
             }
         }
 
@@ -220,64 +259,6 @@ namespace nesne
         {
             yeniuye yeniuye = new yeniuye();
             yeniuye.ShowDialog();
-        }
-
-        private void pictureBox7_Click(object sender, EventArgs e)
-        {
-            string dilek = textBox1.Text.Trim();
-            string sikayet = textBox2.Text.Trim();
-            string oner = textBox3.Text.Trim();
-
-            string emailBody = "DİLEK:\n" + dilek + "\n\n" +
-                               "ŞİKAYET:\n" + sikayet + "\n\n" +
-                               "ÖNERİ:\n" + oner;
-
-            // 3. E-postayı gönder
-            try
-            {
-                MailMessage mail = new MailMessage();
-
-                mail.From = new MailAddress("sumeyyebdemir@gmail.com");
-
-                mail.To.Add("sumeyyebdemir@gmail.com");
-
-                mail.Subject = "oyun görüşü";
-                mail.Body = emailBody;
-
-                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                smtp.Credentials = new NetworkCredential("sumeyyebdemir@gmail.com", "tcii neht mnje rgeh");
-                smtp.EnableSsl = true;
-
-                smtp.Send(mail);
-
-                MessageBox.Show(
-         "Görüşleriniz için teşekkürler. Mesajınız başarıyla iletildi 💕",
-         "Bilgi",
-         MessageBoxButtons.OK,
-         MessageBoxIcon.Information
-     );
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("E-posta gönderilirken hata oluştu: " + ex.Message);
-            }
-
-        }
-
-        private void hakkımızdaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            panel2.Visible = true;
-            tabControl1.SelectedTab = tabPage1;
-
-
-        }
-
-        private void pictureBox12_Click(object sender, EventArgs e)
-        {
-            panel2.Visible = false;
         }
 
         private void çıkışToolStripMenuItem_Click(object sender, EventArgs e)

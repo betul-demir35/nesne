@@ -23,12 +23,6 @@ namespace nesne
                 Location = new Point(0, 0),
                 SizeMode = PictureBoxSizeMode.StretchImage
             };
-
-            try
-            {
-                loadingGif.Image = Image.FromFile(@"C:\Users\EXCALİBUR\Source\Repos\sirinler\sirinler\loading-thinking.gif");
-            }catch { }
-      
             this.Controls.Add(loadingGif);
 
             timer = new System.Windows.Forms.Timer
@@ -51,13 +45,17 @@ namespace nesne
         {
             try
             {
-                string soundPath = @"C:\Users\EXCALİBUR\Desktop\ödevler\nesne\nesne\load.wav";
+                string soundPath = @"C:\Users\betul\OneDrive\Desktop\ödevler\nesne\nesne\bin\Debug\net8.0-windows\load.wav";
 
-                player = new SoundPlayer(soundPath);
+                player = new SoundPlayer("load.wav");
                 player.Play();
                 isSoundOn = true;
-            }  catch { }
-            
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata: " + ex.Message);
+            }
+
         }
         private void pictureBox2_Click(object sender, EventArgs e)
         {

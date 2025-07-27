@@ -82,6 +82,8 @@ namespace nesne
                     label3.Visible = true;
                     label2.Visible = true;
                     pictureBox3.Visible = true;
+                    label9.Visible = false;
+                    label5.Visible = false;
                     MessageBox.Show("Kod doğrulandı! Şifre oluşturabilirsiniz.");
                 }
                 else
@@ -119,8 +121,29 @@ namespace nesne
                         komut.Parameters.AddWithValue("@sifre", sifre);
                         komut.Parameters.AddWithValue("@avatar", secilenAvatarYolu);
 
+                        kayitTamamlandi = true;
                         komut.ExecuteNonQuery();
                         MessageBox.Show("Kayıt başarıyla tamamlandı!");
+
+                        try
+                        {
+                            MailMessage basariMesaj = new MailMessage();
+                            basariMesaj.From = new MailAddress("sumeyyebdemir@gmail.com");
+                            basariMesaj.To.Add(txtMail.Text.Trim());
+                            basariMesaj.Subject = "Kayıt Başarılı!";
+                            basariMesaj.Body = "Kaydınız başarıyla tamamlanmıştır. Sisteme giriş yapabilirsiniz.";
+
+                            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                            smtp.Credentials = new System.Net.NetworkCredential("sumeyyebdemir@gmail.com", "ficg pdjh bxzs frdo");
+                            smtp.EnableSsl = true;
+                            smtp.Send(basariMesaj);
+
+                            
+                        }
+                        catch (Exception exMail)
+                        {
+                            MessageBox.Show("Kayıt başarılı maili gönderilemedi: " + exMail.Message);
+                        }
 
                         kayitTamamlandi = true;
 

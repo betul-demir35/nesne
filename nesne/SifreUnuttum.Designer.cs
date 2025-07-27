@@ -58,8 +58,8 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Times New Roman", 18F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 162);
-            label1.ForeColor = SystemColors.Control;
-            label1.Location = new Point(221, 2);
+            label1.ForeColor = SystemColors.ActiveCaptionText;
+            label1.Location = new Point(190, 9);
             label1.Name = "label1";
             label1.Size = new Size(328, 34);
             label1.TabIndex = 1;
@@ -69,10 +69,10 @@
             // 
             txtAd.BorderStyle = BorderStyle.FixedSingle;
             txtAd.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            txtAd.Location = new Point(257, 129);
+            txtAd.Location = new Point(221, 130);
             txtAd.Multiline = true;
             txtAd.Name = "txtAd";
-            txtAd.Size = new Size(205, 38);
+            txtAd.Size = new Size(241, 32);
             txtAd.TabIndex = 5;
             txtAd.Text = "isim";
             toolTip1.SetToolTip(txtAd, "isim giriniz");
@@ -81,10 +81,10 @@
             // 
             txtSoyad.BorderStyle = BorderStyle.FixedSingle;
             txtSoyad.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            txtSoyad.Location = new Point(257, 173);
+            txtSoyad.Location = new Point(221, 166);
             txtSoyad.Multiline = true;
             txtSoyad.Name = "txtSoyad";
-            txtSoyad.Size = new Size(205, 38);
+            txtSoyad.Size = new Size(241, 30);
             txtSoyad.TabIndex = 6;
             txtSoyad.Text = "soyisim";
             toolTip2.SetToolTip(txtSoyad, "soyisim giriniz");
@@ -93,10 +93,10 @@
             // 
             txtMail.BorderStyle = BorderStyle.FixedSingle;
             txtMail.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            txtMail.Location = new Point(257, 217);
+            txtMail.Location = new Point(221, 197);
             txtMail.Multiline = true;
             txtMail.Name = "txtMail";
-            txtMail.Size = new Size(205, 38);
+            txtMail.Size = new Size(241, 33);
             txtMail.TabIndex = 7;
             txtMail.Text = "g-mail";
             // 
@@ -104,10 +104,10 @@
             // 
             txtSifre.BorderStyle = BorderStyle.FixedSingle;
             txtSifre.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            txtSifre.Location = new Point(257, 173);
+            txtSifre.Location = new Point(221, 166);
             txtSifre.Multiline = true;
             txtSifre.Name = "txtSifre";
-            txtSifre.Size = new Size(205, 38);
+            txtSifre.Size = new Size(241, 30);
             txtSifre.TabIndex = 8;
             txtSifre.Text = "şifre";
             toolTip4.SetToolTip(txtSifre, "şifre giriniz");
@@ -116,10 +116,10 @@
             // 
             txtSifreTekrar.BorderStyle = BorderStyle.FixedSingle;
             txtSifreTekrar.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            txtSifreTekrar.Location = new Point(257, 217);
+            txtSifreTekrar.Location = new Point(221, 197);
             txtSifreTekrar.Multiline = true;
             txtSifreTekrar.Name = "txtSifreTekrar";
-            txtSifreTekrar.Size = new Size(205, 38);
+            txtSifreTekrar.Size = new Size(241, 33);
             txtSifreTekrar.TabIndex = 9;
             txtSifreTekrar.Text = "şifre tekrarı";
             toolTip5.SetToolTip(txtSifreTekrar, "tekrar şifre giriniz");
@@ -128,10 +128,10 @@
             // 
             txtKod.BorderStyle = BorderStyle.FixedSingle;
             txtKod.Font = new Font("Tahoma", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            txtKod.Location = new Point(257, 173);
+            txtKod.Location = new Point(221, 166);
             txtKod.Multiline = true;
             txtKod.Name = "txtKod";
-            txtKod.Size = new Size(205, 38);
+            txtKod.Size = new Size(241, 30);
             txtKod.TabIndex = 12;
             txtKod.Text = "kodu giriniz";
             toolTip3.SetToolTip(txtKod, "gelen kod");
@@ -139,10 +139,9 @@
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Transparent;
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(46, 2);
+            pictureBox2.Location = new Point(78, 12);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(30, 34);
+            pictureBox2.Size = new Size(60, 61);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 23;
             pictureBox2.TabStop = false;
@@ -152,10 +151,9 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = Properties.Resources.switch1;
-            pictureBox1.Location = new Point(-1, 2);
+            pictureBox1.Location = new Point(12, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(32, 34);
+            pictureBox1.Size = new Size(60, 61);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 22;
             pictureBox1.TabStop = false;
@@ -165,8 +163,7 @@
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Transparent;
-            pictureBox3.Image = Properties.Resources.user1;
-            pictureBox3.Location = new Point(274, 262);
+            pictureBox3.Location = new Point(270, 257);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(169, 51);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
@@ -180,7 +177,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
-            BackgroundImage = Properties.Resources.First_Look_at_3D__The_Smurfs__Logo_Unveiled___Official_Zoom_Backgrounds;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(710, 398);
             Controls.Add(pictureBox3);

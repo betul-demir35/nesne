@@ -135,10 +135,31 @@ namespace nesne
                             cmd.Parameters.AddWithValue("@mail", girilenMail);
 
                             cmd.ExecuteNonQuery();
+                            // Yeni şifre sonrası mail gönderme
+                            try
+                            {
+                                MailMessage basariMesaj = new MailMessage();
+                                basariMesaj.From = new MailAddress("sumeyyebdemir@gmail.com");
+                                basariMesaj.To.Add(girilenMail);
+                                basariMesaj.Subject = "Şifreniz Başarıyla Değiştirildi!";
+                                basariMesaj.Body = "Şifreniz başarılı bir şekilde değiştirilmiştir. Sisteme yeni şifreniz ile giriş yapabilirsiniz.";
+
+                                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                                smtp.Credentials = new System.Net.NetworkCredential("sumeyyebdemir@gmail.com", "ficg pdjh bxzs frdo");
+                                smtp.EnableSsl = true;
+                                smtp.Send(basariMesaj);
+
+                                MessageBox.Show("Şifre değişiklik maili gönderildi!");
+                            }
+                            catch (Exception exMail)
+                            {
+                                MessageBox.Show("Şifre değişiklik maili gönderilemedi: " + exMail.Message);
+                            }
+
+                            üye üye = new üye();
+                            üye.Show();
+                            this.Hide();
                         }
-                        üye üye = new üye();
-                        üye.Show();
-                        this.Hide();
                     }
                 }
                 catch (Exception ex)
